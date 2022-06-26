@@ -9,5 +9,10 @@
   		insert into book_member values(#{memberId}, #{memberPw}, #{memberName}, #{memberMail}, #{memberAddr1}, #{memberAddr2}, #{memberAddr3}, 0, now(), 100000, 5000 )
   	</insert>
   	
+  	<!-- 아이디 중복 검사 -->
+  	<select id="idCheck" resultType="int">
+  		SELECT COUNT(*) FROM book_member WHERE memberId = #{memberId}
+  	</select>
+  	
   </mapper>
   

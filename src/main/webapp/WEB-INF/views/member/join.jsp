@@ -23,6 +23,8 @@
 				<div class="id_name">아이디</div>
 				<div class="id_input_box">
 					<input class="id_input" name="memberId">
+					<span  class="id_input_re_1" style="display: none; margin: 14px 0px 0px -9px;">사용 가능한 아이디입니다.</span>
+					<span  class="id_input_re_2" style="display: none; margin: 14px 0px 0px -9px;">해당 아이디가 이미 존재합니다.</span>
 				</div>
 			</div>
 			<div class="pw_wrap">
@@ -95,6 +97,29 @@ $(document).ready(function(){
 		$("#join_form").submit();
 	})
 })
+
+//아이디 중복 검사 
+$('.id_input').on("propertychange change keyup paste input", function() {
+//	console.log("::::keyup 테스트"); 
+	var memberId = $('.id_input').val();
+	var data = {memberId : memberId}
+	
+	$.ajax({
+		type : "post",
+		url : "/member/memberIdChk",
+		data : data,
+		success : function(result) {
+			console.log("성공 여부" + result);
+			if(result != 'fail'){
+				$('.id_input_re_1').css("display","inline-block");
+				$('.id_input_re_2').css("display", "none");				
+			} else {
+				$('.id_input_re_2').css("display","inline-block");
+				$('.id_input_re_1').css("display", "none");				
+			}
+		} //Success 함수 
+	}) //ajax 종료 
+}); //함수 종료 
 
 </script>
 
