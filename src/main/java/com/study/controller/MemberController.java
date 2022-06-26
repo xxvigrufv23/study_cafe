@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.study.model.MemberVO;
 import com.study.service.MemberService;
@@ -58,5 +59,24 @@ public class MemberController {
 	
 	}
 	
-
+	//아이디 중복검사 
+	@RequestMapping(value = "memberIdChk", method = RequestMethod.POST)
+	@ResponseBody
+	public String memberIdChkPOST(String memberId) throws Exception {
+		
+		//logger.info("[API CALLED : /member/memberIdChk ]" );
+		
+		int result = memberService.idCheck(memberId);
+		
+		if (result != 0) {
+			
+			return "fail";
+			
+		} else {
+			
+			return "success";
+		
+		}
+		
+	}
 }

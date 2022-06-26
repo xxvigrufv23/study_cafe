@@ -245,6 +245,16 @@
     font-weight: 900;
     color: white;
 }
+/* 중복아이디 존재하지 않는경우 */
+.id_input_re_1{
+	color : green;
+	display : none;
+}
+/* 중복아이디 존재하는 경우 */
+.id_input_re_2{
+	color : red;
+	display : none;
+}
 
 /* float 속성 해제 */
 .clearfix{
