@@ -119,7 +119,7 @@ $('.id_input').on("propertychange change keyup paste input", function() {
 			}
 		} //Success 함수 
 	}) //ajax 종료 
-}); //함수 종료 
+}); //함수 종료 .//
 
 </script>
 
