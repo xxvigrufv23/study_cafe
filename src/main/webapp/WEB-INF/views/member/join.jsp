@@ -30,14 +30,16 @@
 			<div class="pw_wrap">
 				<div class="pw_name">비밀번호</div>
 				<div class="pw_input_box">
-					<input class="pw_input" name="memberPw">
+					<input class="pw_input" type="password"  name="memberPw">
 				</div>
 			</div>
 			<div class="pwck_wrap">
 				<div class="pwck_name">비밀번호 확인</div>
 				<div class="pwck_input_box">
-					<input class="pwck_input">
+					<input class="pwck_input" type="password">
 				</div>
+				<div id="alert-success">비밀번호가 일치합니다.</div>
+				<div id="alert-danger">비밀번호가 일치하지 않습니다.</div>
 			</div>
 			<div class="user_wrap">
 				<div class="user_name">이름</div>
@@ -58,6 +60,7 @@
 						<span>인증번호 전송</span>
 					</div>
 					<div class="clearfix"></div>
+					<span id="mail_check_input_box_warn"></span>
 				</div>
 			</div>
 			<div class="address_wrap">
@@ -91,6 +94,8 @@
 
 </body>
 <script>
+var code = ""; //e-mail 인증번호 저장을 위한 코드 변수 선언.
+
 $(document).ready(function(){
 	$(".join_button").click(function() {
 		$("#join_form").attr("action", "/member/join");
@@ -126,6 +131,9 @@ $('.id_input').on("propertychange change keyup paste input", function() {
 $(".mail_check_button").click(function(){
     
 	var email = $(".mail_input").val(); //입력한 이메일 
+	var checkBox = $(".mail_check_input"); //인증번호 입력란
+	var boxWrap = $("mail_check_input_box"); //인증번호 입력란 박스 
+	
 	$.ajax({
 		type : "GET",
 		url : "/member/mailCheck?email=" + email,
@@ -133,10 +141,48 @@ $(".mail_check_button").click(function(){
 		success:function(data){
             
             console.log("data : " + data);
+            checkBox.attr("disabled", false);
+            boxWrap.attr("id", "mail_check_input_box_true");
             
+            code = data;
         }
 	})
 	
+});
+
+/* 인증번호 비교 */
+$(".mail_check_input").blur(function(){
+	var inputCode = $(".mail_check_input").val(); //입력된 코드 
+	var checkResult = $("#mail_check_input_box_warn"); // 비교 결과
+    
+	if(code == inputCode){
+		checkResult.html("인증번호가 일치합니다.");
+        checkResult.attr("class", "correct"); 
+	} else {                                           
+        checkResult.html("인증번호를 다시 확인해주세요.");
+        checkResult.attr("class", "incorrect");
+    }    
+});
+
+/* 비밀번호 재확인 비교  */
+$(function(){
+	$("#alert-success").hide();
+	$("#alert-danger").hide();
+	
+	$("input").keyup(function(){
+		var password = $(".pw_input").val(); //비밀번호
+		var passwordChk = $(".pwck_input").val(); //비밀번호 확인
+	    
+		if (password != "" || passwordChk != "") {
+			if (password == passwordChk) {
+				$("#alert-success").show();
+				$("#alert-danger").hide();
+			} else {                                           
+				$("#alert-success").hide();
+				$("#alert-danger").show();
+		    }    
+		}	
+	});
 });
 
 </script>

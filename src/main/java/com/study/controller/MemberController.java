@@ -52,11 +52,11 @@ public class MemberController {
 	public String joinPOST(MemberVO member) throws Exception {
 		
 		logger.info("[API CALLED === /member/join]");
+		logger.info("[Content Log === Membership registration is successful.]");
 		
 		memberService.memberJoin(member);
 		
-		logger.info("member = " + member);
-		logger.info("회원가입 로직 success");
+		System.out.print("member = " + member);
 		
 		return "redirect:/main";
 	}
@@ -68,7 +68,7 @@ public class MemberController {
 	
 	}
 	
-	//아이디 중복검사 
+	/* 아이디 중복검사 */
 	@RequestMapping(value = "memberIdChk", method = RequestMethod.POST)
 	@ResponseBody
 	public String memberIdChkPOST(String memberId) throws Exception {

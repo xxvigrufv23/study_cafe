@@ -26,6 +26,8 @@
     font-size: 80px;
     font-weight: 900;
     color: white;
+    display: flex;
+    justify-content: center;
 }
 
 /* 아이디 영역 */
@@ -127,7 +129,7 @@
 }
 .mail_input_box{
 	border: 1px solid black;
-	height:31px;
+	height:41px;
 	padding: 10px 14px;	
 	
 }
@@ -268,6 +270,12 @@
 	clear: both;
 }
 
+.correct{
+    color : green;
+}
+.incorrect{
+    color : red;
+}
 
  
 
