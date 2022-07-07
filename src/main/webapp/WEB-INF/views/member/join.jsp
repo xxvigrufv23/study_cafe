@@ -171,7 +171,7 @@ $(function(){
 	
 	$("input").keyup(function(){
 		var password = $(".pw_input").val(); //비밀번호
-		var passwordChk = $(".pwck_input").val(); //비밀번호 확인
+		var passwordChk = $(".pwck_input").val(); //비밀번호 확인 
 	    
 		if (password != "" || passwordChk != "") {
 			if (password == passwordChk) {
