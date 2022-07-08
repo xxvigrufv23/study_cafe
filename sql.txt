@@ -1,0 +1,14 @@
+CREATE TABLE book_member (
+memberId varchar(50) not null,
+memberPw varchar(100) not null,
+memberName varchar(30) not null,
+memberMail varchar(100) not null,
+memberAddr1 varchar(100) not null,
+memberAddr2 varchar(100) not null,
+memberAddr3 varchar(100) not null,
+adminCk int not null,
+regDate date not null,
+money int not null,
+point int not null,
+PRIMARY KEY(memberId)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='사용자를 관리한다.';
