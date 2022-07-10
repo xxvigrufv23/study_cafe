@@ -1,13 +1,13 @@
 package com.study.controller;
 
-import java.io.File;
+//import java.io.File;
 
 import javax.mail.internet.MimeMessage;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.core.io.FileSystemResource;
+//import org.springframework.core.io.FileSystemResource;
 import org.springframework.mail.javamail.JavaMailSenderImpl;
 import org.springframework.mail.javamail.MimeMessageHelper;
 import org.springframework.mail.javamail.MimeMessagePreparator;
@@ -39,7 +39,7 @@ public class testMailSend {
             mailHelper.setSubject(subject);
             mailHelper.setText(content, true);
             
-//            FileSystemResource file = new FileSystemResource(new File("D:\\test.txt")); 
+//            FileSystemResource file = new FileSystemResource(n/ew File("D:\\test.txt")); 
 //            mailHelper.addAttachment("test.txt", file);            
             
             mailSender.send(mail);

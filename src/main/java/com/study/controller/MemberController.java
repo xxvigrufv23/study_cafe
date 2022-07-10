@@ -40,14 +40,15 @@ public class MemberController {
 	
 	
 	
-	//회원가입 페이지 이동
-	@RequestMapping(value = "join", method = RequestMethod.GET)
+	/* 회원가입 페이지 이동 */
+	@RequestMapping(value = "/join", method = RequestMethod.GET)
 	public void loginGET() {
 		
 	  logger.info("로그인 페이지 진입");
 	  
 	}
 	
+	/* 회원가입 POST */
 	@RequestMapping(value="/join", method = RequestMethod.POST)
 	public String joinPOST(MemberVO member) throws Exception {
 		
@@ -61,7 +62,8 @@ public class MemberController {
 		return "redirect:/main";
 	}
 	
-	@RequestMapping(value = "login", method = RequestMethod.GET)
+	/* 로그인 페이지 이동 */
+	@RequestMapping(value = "/login", method = RequestMethod.GET)
 	public void joinGET() {
 		
 	  logger.info("회원가입 페이지 진입");
@@ -108,18 +110,18 @@ public class MemberController {
                 "<br>" + 
                 "해당 인증번호를 인증번호 확인란에 기입하여 주세요.";
 
-//        try {
-//            MimeMessage message = mailSender.createMimeMessage();
-//            MimeMessageHelper helper = new MimeMessageHelper(message, true, "utf-8");
-//            helper.setFrom(setFrom);
-//            helper.setTo(toMail);
-//            helper.setSubject(title);
-//            helper.setText(content,true);
-//            mailSender.send(message);
-//            
-//        }catch(Exception e) {
-//            e.printStackTrace();
-//        }
+        try {
+            MimeMessage message = mailSender.createMimeMessage();
+            MimeMessageHelper helper = new MimeMessageHelper(message, true, "utf-8");
+            helper.setFrom(setFrom);
+            helper.setTo(toMail);
+            helper.setSubject(title);
+            helper.setText(content,true);
+            mailSender.send(message);
+            
+        }catch(Exception e) {
+            e.printStackTrace();
+        }
  
         //숫자를 문자형으로 변환하는 방법 Integer.toString(숫자A);
         String num = Integer.toString(checkNum); 
